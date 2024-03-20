@@ -11,7 +11,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Event</h5>
                 <button
                     type="button"
-                    class="btn-close"
+                    class="btn-close button-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
                 ></button>
@@ -79,7 +79,7 @@
             <div class="modal-footer">
                 <button
                     type="button"
-                    class="btn btn-danger mr-auto"
+                    class="btn btn-danger mr-auto button-delete"
                     style="display: none"
                     id="deleteEventBtn"
                     onclick="deleteEvent()"
@@ -88,7 +88,7 @@
                 </button>
                 <button
                     type="button"
-                    class="btn btn-primary"
+                    class="btn btn-primary button-save"
                     onclick="submitEventFormData()"
                 >
                     Sauvegarder
