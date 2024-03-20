@@ -1,4 +1,7 @@
+// bootstrap.js, pour le démarrage de l'app, créé par Laravel
 import './bootstrap';
+
+// Bootstrap, la librairie HTML/CSS/JS
 import 'bootstrap';
 
 import Alpine from 'alpinejs';
