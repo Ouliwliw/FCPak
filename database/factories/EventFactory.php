@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,10 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::inRandomOrder()->first();
+
         return [
-            'user_id' => $this->faker->numberBetween(0, 100),
+            'user_id' => $user->id,
             'start' => now(),
             'end' => now()->addHour(),
             'title' => $this->faker->text(15),
