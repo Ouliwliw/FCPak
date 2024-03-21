@@ -4,10 +4,8 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Event>
- */
 class EventFactory extends Factory
 {
     /**
@@ -18,11 +16,13 @@ class EventFactory extends Factory
     public function definition(): array
     {
         $user = User::inRandomOrder()->first();
+        $start = Carbon::now('Europe/Paris')->startOfMonth();
+        $end = Carbon::now('Europe/Paris')->endOfMonth();
 
         return [
             'user_id' => $user->id,
-            'start' => now(),
-            'end' => now()->addHour(),
+            'start' => $this->faker->dateTimeBetween($start, $end),
+            'end' => $this->faker->dateTimeBetween($start, $end),
             'title' => $this->faker->text(15),
             'description' => $this->faker->text(60),
             'is_all_day' => $this->faker->boolean(50),
