@@ -17,12 +17,12 @@ class EventFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'title' => $this->faker->text(20),
-            // 'content' => $this->faker->text(60),
-            // 'colour' => $this->faker->colorName,
-            // 'starts_at' => now(),
-            // 'ends_at' => now()->addHour(),
-
+            'user_id' => $this->faker->numberBetween(0, 100),
+            'start' => now(),
+            'end' => now()->addHour(),
+            'title' => $this->faker->text(15),
+            'description' => $this->faker->text(60),
+            'is_all_day' => $this->faker->boolean(50),
         ];
     }
 }

@@ -34,8 +34,9 @@ class DatabaseSeeder extends Seeder
             );
 
         \App\Models\User::factory()->create([
-            'name' => 'Aaadmin',
+            'name' => 'Admin',
             'email' => 'admin@test.com',
+            'password' => 'password',
         ])
             ->assignRole(Role::firstWhere('name', RoleEnum::ADMIN->value));
 

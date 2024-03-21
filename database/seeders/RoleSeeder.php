@@ -15,13 +15,13 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         foreach (RoleEnum::cases() as $roleEnum) {
-            Role::create([
-                'name' => $roleEnum->value,
-
-            ]
-
+            Role::create(
+                [
+                    'name' => $roleEnum->value,
+                ]
             );
         }
+        
         Permission::create([
             'name' => 'group.*',
         ])->assignRole(
