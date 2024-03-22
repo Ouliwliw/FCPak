@@ -4,6 +4,7 @@
         let calendarEl = document.querySelector("#calendar");
         calendar = new FullCalendar.Calendar(calendarEl, {
             editable: true,
+            aspectRatio: 1.5,
             locale: "fr",
             weekNumberCalculation: "ISO",
             initialView: "dayGridMonth",
@@ -69,6 +70,7 @@
         });
 
         calendar.render();
+        calendar.updateSize();
         $("#is_all_day").change(function () {
             let is_all_day = $(this).prop("checked");
             if (is_all_day) {
