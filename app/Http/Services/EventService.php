@@ -47,7 +47,7 @@ class EventService
         $events = $eventQuery->get();
         $data = [];
         foreach ($events as $event) {
-            if (! (int) $event['is_all_day']) {
+            if (!(int) $event['is_all_day']) {
                 $event['allDay'] = false;
                 $event['start'] = Carbon::createFromTimeStamp(strtotime($event['start']))->toDateTimeString();
                 $event['end'] = Carbon::createFromTimeStamp(strtotime($event['end']))->toDateTimeString();
