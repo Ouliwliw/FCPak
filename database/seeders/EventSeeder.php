@@ -20,7 +20,8 @@ class EventSeeder extends Seeder
             $numberOfEvents = rand(5, 15); // Nombre aléatoire d'événements par utilisateur
 
             Event::factory($numberOfEvents)->create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'background_color' => $user->color
             ]);
         }
     }

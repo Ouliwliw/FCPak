@@ -59,7 +59,7 @@
                 $("#is_all_day").prop("checked", event.allDay);
                 $("#eventModal").modal("show");
                 $("#deleteEventBtn").show();
-                console.log(info);
+                console.log(info.event.backgroundColor);
                 if (info.event.allDay) {
                     initializeStartDateEndDateFormat("Y-m-d", true);
                 } else {
