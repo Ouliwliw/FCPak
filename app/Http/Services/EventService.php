@@ -60,8 +60,6 @@ class EventService
                 $event['startDay'] = $event['start'];
             }
             $event['event_id'] = $event['id'];
-            $event['borderColor'] = '#D2D5B7';
-            $event['backgroundColor'] = '#3C6F27';
             array_push($data, $event);
         }
 
