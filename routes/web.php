@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\Group\CreateController;
+use App\Http\Controllers\Group\StoreController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +23,8 @@ Route::middleware('auth')->group(function () {
         ->as('group.')
         ->middleware('can: group')
         ->group(static function (): void {
-            route::get('/create', \App\Http\Controllers\Group\CreateController::class)->name('create');
-            route::post('/', \App\Http\Controllers\Group\StoreController::class)->name('store');
-
+            route::get('/create', CreateController::class)->name('create');
+            route::post('/', StoreController::class)->name('store');
         });
 
     Route::resource('events', EventController::class);
@@ -31,4 +32,4 @@ Route::middleware('auth')->group(function () {
     Route::put('events/{id}/resize', '\App\Http\Controllers\EventController@resizeEvent')->name('resize-event');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
