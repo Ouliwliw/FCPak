@@ -3,6 +3,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         let calendarEl = document.querySelector("#calendar");
         calendar = new FullCalendar.Calendar(calendarEl, {
+            googleCalendarApiKey: "AIzaSyCyLvwA8ySoN7KVjHvwc-cSEfu0NPidY0U",
             editable: true,
             aspectRatio: 1.5,
             locale: "fr",
@@ -20,7 +21,13 @@
                     showNonCurrentDates: true,
                 },
             },
-            events: "{{route('refetch-events')}}",
+            eventSources: [
+                {
+                    googleCalendarId: 'couturierinc@gmail.com',
+                },
+
+                "{{route('refetch-events')}}",
+            ],
             dateClick: function (info) {
                 let startDate, endDate, allDay;
                 allDay = $("#is_all_day").prop("checked");
@@ -70,7 +77,6 @@
         });
 
         calendar.render();
-        calendar.updateSize();
         $("#is_all_day").change(function () {
             let is_all_day = $(this).prop("checked");
             if (is_all_day) {
