@@ -59,7 +59,7 @@
                 $("#is_all_day").prop("checked", event.allDay);
                 $("#eventModal").modal("show");
                 $("#deleteEventBtn").show();
-                console.log(info.event.backgroundColor);
+                console.log(info.event);
                 if (info.event.allDay) {
                     initializeStartDateEndDateFormat("Y-m-d", true);
                 } else {
@@ -125,7 +125,7 @@
             is_all_day: $("#is_all_day").prop("checked") ? 1 : 0,
         };
         if (eventId) {
-            url = '{{url('/')}}' + `/events/${eventId}`;
+            url = "{{url('/')}}" + `/events/${eventId}`;
             postData._method = "PUT";
         }
 
@@ -152,7 +152,7 @@
             let eventId = $("#eventId").val();
             let url = "";
             if (eventId) {
-                url = '{{url('/')}}' + `/events/${eventId}`;
+                url = "{{url('/')}}" + `/events/${eventId}`;
             }
             $.ajax({
                 type: "DELETE",
@@ -173,7 +173,7 @@
 
     function resizeEventUpdate(event) {
         let eventId = event.id;
-        let url = '{{url('/')}}' + `/events/${eventId}/resize`;
+        let url = "{{url('/')}}" + `/events/${eventId}/resize`;
         let start = null,
             end = null;
         if (event.allDay) {
