@@ -20,7 +20,9 @@ return new class extends Migration
             $table->integer('is_all_day')->default(0)->nullable();
             $table->string('title');
             $table->text('description');
-            $table->string('background_color')->nullable();
+            $table->string('backgroundColor')->nullable();
+            $table->string('borderColor')->nullable();
+
             $table->string('event_id')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -21,7 +21,8 @@ class EventSeeder extends Seeder
 
             Event::factory($numberOfEvents)->create([
                 'user_id' => $user->id,
-                'background_color' => $user->color
+                'backgroundColor' => $user->color,'borderColor' => $user->color . "80",
+
             ]);
         }
     }
