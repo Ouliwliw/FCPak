@@ -17,7 +17,7 @@ class EventSeeder extends Seeder
         $users = User::all();
 
         foreach ($users as $user) {
-            $numberOfEvents = rand(5, 15); // Nombre aléatoire d'événements par utilisateur
+            $numberOfEvents = rand(4, 8); // Nombre aléatoire d'événements par utilisateur
 
             Event::factory($numberOfEvents)->create([
                 'user_id' => $user->id,
