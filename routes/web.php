@@ -14,6 +14,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/google', function () {
+    return view('google-quickstart');
+})->name('google');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -29,7 +33,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('events', EventController::class);
     Route::get('refetch-events', '\App\Http\Controllers\EventController@refetchEvents')->name('refetch-events');
-    Route::put('events/{id}/resize', '\App\Http\Controllers\EventController@resizeEvent')->name('resize-event');
+    Route::put('events/{id}/resize', '\App\Http\Controllers\EventController@resizeEvent')->name('resize-event');    
 });
 
 require __DIR__ . '/auth.php';
