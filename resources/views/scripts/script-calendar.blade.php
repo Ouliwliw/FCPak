@@ -3,8 +3,9 @@
     document.addEventListener("DOMContentLoaded", function () {
         let calendarEl = document.querySelector("#calendar");
         calendar = new FullCalendar.Calendar(calendarEl, {
-            // googleCalendarApiKey: "AIzaSyCyLvwA8ySoN7KVjHvwc-cSEfu0NPidY0U",
+            // googleCalendarApiKey: "AIzaSyDoAIyqQWoBYiypBjza5JlI1G-2jKfTukg",
             editable: true,
+            // selectable: true,   POUR INSTANCIER UN EVENT SUR UNE PLAGE HORAIRE/JOURNALIERE, WIP
             aspectRatio: 1.5,
             locale: "fr",
             weekNumberCalculation: "ISO",
@@ -59,12 +60,17 @@
                 $("#is_all_day").prop("checked", event.allDay);
                 $("#eventModal").modal("show");
                 $("#deleteEventBtn").show();
-                console.log(info.event);
                 if (info.event.allDay) {
                     initializeStartDateEndDateFormat("Y-m-d", true);
                 } else {
                     initializeStartDateEndDateFormat("Y-m-d H:i", false);
                 }
+
+                // opens events in a popup window
+                window.open(info.event.url, '_blank', 'width=700,height=600');
+
+                // prevents current tab from navigating
+                info.jsEvent.preventDefault();
             },
             eventDrop: function (info) {
                 const event = info.event;
