@@ -3,7 +3,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         let calendarEl = document.querySelector("#calendar");
         calendar = new FullCalendar.Calendar(calendarEl, {
-            googleCalendarApiKey: "AIzaSyCyLvwA8ySoN7KVjHvwc-cSEfu0NPidY0U",
+            // googleCalendarApiKey: "AIzaSyCyLvwA8ySoN7KVjHvwc-cSEfu0NPidY0U",
             editable: true,
             aspectRatio: 1.5,
             locale: "fr",
@@ -23,7 +23,7 @@
             },
             eventSources: [
                 {
-                    googleCalendarId: 'couturierinc@gmail.com',
+                    // googleCalendarId: 'couturierinc@gmail.com',
                 },
 
                 "{{route('refetch-events')}}",
