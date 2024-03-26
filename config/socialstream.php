@@ -7,13 +7,13 @@ return [
     'middleware' => ['web'],
     'prompt' => 'Or Login Via',
     'providers' => [
-        // Providers::github(),
+        // Providers::google(),
     ],
     'features' => [
         // Features::generateMissingEmails(),
-        // Features::createAccountOnFirstLogin(),
-        // Features::globalLogin(),
-        // Features::authExistingUnlinkedUsers(),
+        Features::createAccountOnFirstLogin(),
+        Features::globalLogin(),
+        Features::authExistingUnlinkedUsers(),
         Features::rememberSession(),
         Features::providerAvatars(),
         Features::refreshOAuthTokens(),
