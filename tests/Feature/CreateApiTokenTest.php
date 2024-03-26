@@ -1,8 +1,9 @@
 <?php
 
 use App\Models\User;
+use HeaderX\JetstreamPassport\Http\Livewire\ApiTokenManager;
+use Illuminate\Support\Facades\Artisan;
 use Laravel\Jetstream\Features;
-use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
 use Livewire\Livewire;
 
 test('api tokens can be created', function () {
@@ -12,10 +13,12 @@ test('api tokens can be created', function () {
         $this->actingAs($user = User::factory()->create());
     }
 
+    Artisan::call('passport:client', ['--personal' => true, '--name' => 'Laravel Personal Access Client']);
+
     Livewire::test(ApiTokenManager::class)
         ->set(['createApiTokenForm' => [
             'name' => 'Test Token',
-            'permissions' => [
+            'scopes' => [
                 'read',
                 'update',
             ],

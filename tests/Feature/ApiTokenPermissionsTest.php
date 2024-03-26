@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Support\Str;
+use HeaderX\JetstreamPassport\Http\Livewire\ApiTokenManager;
+use Illuminate\Support\Facades\Artisan;
 use Laravel\Jetstream\Features;
-use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
 use Livewire\Livewire;
 
 test('api token permissions can be updated', function () {
@@ -13,16 +13,14 @@ test('api token permissions can be updated', function () {
         $this->actingAs($user = User::factory()->create());
     }
 
-    $token = $user->tokens()->create([
-        'name' => 'Test Token',
-        'token' => Str::random(40),
-        'abilities' => ['create', 'read'],
-    ]);
+    Artisan::call('passport:client', ['--personal' => true, '--name' => 'Laravel Personal Access Client']);
+
+    $token = $user->createToken('Test Token', ['create', 'read'])->token;
 
     Livewire::test(ApiTokenManager::class)
-        ->set(['managingPermissionsFor' => $token])
+        ->set(['managingPermissionsForId' => $token->id])
         ->set(['updateApiTokenForm' => [
-            'permissions' => [
+            'scopes' => [
                 'delete',
                 'missing-permission',
             ],
