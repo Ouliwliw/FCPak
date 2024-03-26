@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
 
 class EventSeeder extends Seeder
 {
@@ -21,7 +20,7 @@ class EventSeeder extends Seeder
 
             Event::factory($numberOfEvents)->create([
                 'user_id' => $user->id,
-                'backgroundColor' => $user->color,'borderColor' => $user->color . "80",
+                'backgroundColor' => $user->color, 'borderColor' => $user->color.'80',
 
             ]);
         }

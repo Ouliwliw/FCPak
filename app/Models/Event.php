@@ -11,7 +11,7 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'start', 'end', 'title', 'description', 'is_all_day', 'user_id', 'backgroundColor', 'borderColor'
+        'start', 'end', 'title', 'description', 'is_all_day', 'user_id', 'backgroundColor', 'borderColor',
     ];
 
     public function users(): BelongsToMany

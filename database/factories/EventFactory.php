@@ -27,7 +27,7 @@ class EventFactory extends Factory
             'description' => $this->faker->text(60),
             'is_all_day' => $this->faker->boolean(50),
             'backgroundColor' => $user->color,
-            'borderColor' => $user->color . "80",
+            'borderColor' => $user->color.'80',
         ];
     }
 }
