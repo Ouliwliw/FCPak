@@ -153,8 +153,8 @@
         });
 
         $.ajax({
-            type: "POST",
-            url: "{{ route('events.create') }}",
+            type: "PUT",
+            url: "{{ route('google-events.create') }}",
             dataType: "json",
             data: postData,
             success: function (res) {
@@ -179,6 +179,20 @@
             $.ajax({
                 type: "DELETE",
                 url: url,
+                dataType: "json",
+                data: {},
+                success: function (res) {
+                    if (res.success) {
+                        calendar.refetchEvents();
+                        $("#eventModal").modal("hide");
+                    } else {
+                        alert("Someting going wrong !");
+                    }
+                },
+            });
+            $.ajax({
+                type: "DELETE",
+                url: "{{ route('google-events.delete') }}",
                 dataType: "json",
                 data: {},
                 success: function (res) {
