@@ -1,4 +1,5 @@
 <script>
+<<<<<<< HEAD
     let calendar = null;
     document.addEventListener("DOMContentLoaded", function () {
         let calendarEl = document.querySelector("#calendar");
@@ -247,4 +248,7 @@
             },
         });
     }
+=======
+    
+>>>>>>> paulJetStream
 </script>
