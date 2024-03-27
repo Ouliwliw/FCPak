@@ -11,6 +11,6 @@
         </div>
     </div>
     <x-calendar.modal/>
-    @include('calendar.script-calendar')
+    <x-calendar.script/>
 </x-app-layout>
 
