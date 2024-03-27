@@ -1,14 +1,7 @@
 let calendar = null;
 
-
-
-    document
-        .querySelector(".button-save")
-        .addEventListener("click", submitEventFormData);
-    document
-        .querySelector(".button-delete")
-        .addEventListener("click", deleteEvent);
-
+document.querySelector(".button-save").addEventListener("click", submitEventFormData);
+document.querySelector(".button-delete").addEventListener("click", deleteEvent);
 
 document.addEventListener("DOMContentLoaded", function () {
     let calendarEl = document.querySelector("#calendar");
@@ -77,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // opens events in a popup window
-            window.open(info.event.url, "_blank", "width=700,height=600");
+            // window.open(info.event.url, "_blank", "width=700,height=600");
 
             // prevents current tab from navigating
             info.jsEvent.preventDefault();
@@ -149,6 +142,20 @@ function submitEventFormData() {
     $.ajax({
         type: "POST",
         url: url,
+        dataType: "json",
+        data: postData,
+        success: function (res) {
+            if (res.success) {
+                calendar.refetchEvents();
+                $("#eventModal").modal("hide");
+            } else {
+                alert("Something went wrong !");
+            }
+        },
+    });
+    $.ajax({
+        type: "PUT",
+        url: "google-events/create",
         dataType: "json",
         data: postData,
         success: function (res) {
