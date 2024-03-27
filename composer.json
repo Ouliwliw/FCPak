@@ -15,7 +15,8 @@
         "laravel/jetstream": "^5.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "livewire/livewire": "^3.0"
+        "livewire/livewire": "^3.0",
+        "spatie/laravel-google-calendar": "^3.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.12",
