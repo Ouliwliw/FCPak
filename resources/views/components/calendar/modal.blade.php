@@ -82,14 +82,14 @@
                     class="btn btn-danger mr-auto button-delete"
                     style="display: none"
                     id="deleteEventBtn"
-                    onclick="deleteEvent()"
+                   
                 >
                     Supprimer
                 </button>
                 <button
                     type="button"
                     class="btn btn-primary button-save"
-                    onclick="submitEventFormData()"
+                    
                 >
                     Sauvegarder
                 </button>
