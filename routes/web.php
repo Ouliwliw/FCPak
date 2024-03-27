@@ -19,7 +19,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::put('events/{id}/resize', '\App\Http\Controllers\EventController@resizeEvent')->name('resize-event');
 
     Route::put('/google-events/create', '\App\Http\Controllers\GoogleEventController@create')->name('google-events.create');
-    // Route::delete('/google-events/delete', '\App\Http\Controllers\GoogleEventController@destroy')->name('google-events.delete');
+    Route::delete('/google-events/delete', '\App\Http\Controllers\GoogleEventController@delete')->name('google-events.delete');
 });
 
 require __DIR__.'/socialstream.php';

@@ -1,6 +1,8 @@
 let calendar = null;
 
-document.querySelector(".button-save").addEventListener("click", submitEventFormData);
+document
+    .querySelector(".button-save")
+    .addEventListener("click", submitEventFormData);
 document.querySelector(".button-delete").addEventListener("click", deleteEvent);
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -175,6 +177,20 @@ function deleteEvent() {
         if (eventId) {
             url = `/events/${eventId}`;
         }
+        $.ajax({
+            type: "DELETE",
+            url: "google-events/delete",
+            dataType: "string",
+            data: eventId,
+            success: function (res) {
+                if (res.success) {
+                    calendar.refetchEvents();
+                    $("#eventModal").modal("hide");
+                } else {
+                    alert("Someting going wrong !");
+                }
+            },
+        });
         $.ajax({
             type: "DELETE",
             url: url,

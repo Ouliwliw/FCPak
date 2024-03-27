@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateEventRequest;
-use App\Http\Services\GoogleEventService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Spatie\GoogleCalendar\Event;
@@ -24,6 +22,7 @@ class GoogleEventController extends Controller
     public function create(Request $request)
     {
         $event = new Event;
+        $event->id = $request->id;
         $event->name = $request->title;
         $event->startDateTime = Carbon::parse($request->start);
         $event->endDateTime = Carbon::parse($request->end);
@@ -79,11 +78,10 @@ class GoogleEventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function delete(string $eventId)
     {
-        $eventId = $request->id;
-        $event = Event::find($eventId);
-
-        $event->delete();
+        dd($eventId, "oui");
+        // $event = Event::find($eventId);
+        // $event->delete();
     }
 }
