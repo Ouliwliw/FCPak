@@ -7,8 +7,10 @@ use App\Http\Requests\UpdateEventRequest;
 use App\Http\Services\EventService;
 use App\Http\Services\GoogleService;
 use App\Models\Event;
+use App\Models\GoogleEvent;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Spatie\GoogleCalendar\Event as GoogleCalendarEvent;
 
 class EventController extends Controller
 {
@@ -47,6 +49,14 @@ class EventController extends Controller
         $data = $request->all();
         $data['user_id'] = auth()->user()->id;
         $eventService = new EventService(auth()->user());
+
+        $googleEvent = GoogleEvent::create([
+            'name' => $request->title,
+            'startDateTime' => Carbon::parse($request->start),
+            'endDateTime' => Carbon::parse($request->end),
+        ]);
+        $data['event_id'] = $googleEvent->googleEvent->id;
+
         $event = $eventService->create($data);
         if ($event) {
             return response()->json([
@@ -99,17 +109,11 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        try {
-            //            if ($event->event_id) {
-            //                $eventService = new EventService(auth()->user());
-            //                $eventService->syncWithGoogle($event, true);
-            //            }
-            $event->delete();
+        $googleEvent = GoogleCalendarEvent::find($event->event_id);
+        $event->delete();
+        $googleEvent->delete();
 
-            return response()->json(['success' => true]);
-        } catch (\Exception $exception) {
-            return response()->json(['success' => true]);
-        }
+        return response()->json(['success' => true]);
     }
 
     public function resizeEvent(Request $request, $id)
