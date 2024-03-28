@@ -94,6 +94,9 @@ class EventController extends Controller
         $eventService = new EventService(auth()->user());
         $event = $eventService->update($id, $data);
         if ($event) {
+
+            $this->updateGoogleEvent($event);
+
             return response()->json([
                 'success' => true,
             ]);
@@ -110,15 +113,14 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         $googleEvent = GoogleCalendarEvent::find($event->event_id);
-        $event->delete();
         $googleEvent->delete();
+        $event->delete();
 
         return response()->json(['success' => true]);
     }
 
     public function resizeEvent(Request $request, $id)
     {
-
         $data = $request->all();
         if (isset($data['is_all_day']) && $data['is_all_day'] == 1) {
             $data['end'] = Carbon::createFromTimestamp(strtotime($data['end']))->addDays(-1)->toDateString();
@@ -126,6 +128,9 @@ class EventController extends Controller
         $eventService = new EventService(auth()->user());
         $event = $eventService->update($id, $data);
         if ($event) {
+
+            $this->updateGoogleEvent($event);
+
             return response()->json([
                 'success' => true,
             ]);
@@ -134,5 +139,18 @@ class EventController extends Controller
                 'success' => false,
             ]);
         }
+    }
+
+    public function updateGoogleEvent($event)
+    {
+        $googleEvent = GoogleCalendarEvent::find($event->event_id);
+        $googleEvent->update([
+            'name' => $event->title,
+            'startDateTime' => Carbon::parse($event->start),
+            'endDateTime' => Carbon::parse($event->end),
+        ]);
+        return response()->json([
+            'success' => true,
+        ]);
     }
 }
