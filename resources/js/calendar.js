@@ -8,7 +8,7 @@ document.querySelector(".button-delete").addEventListener("click", deleteEvent);
 document.addEventListener("DOMContentLoaded", function () {
     let calendarEl = document.querySelector("#calendar");
     calendar = new FullCalendar.Calendar(calendarEl, {
-        // googleCalendarApiKey: "AIzaSyDoAIyqQWoBYiypBjza5JlI1G-2jKfTukg",
+        googleCalendarApiKey: "AIzaSyDU87dPFQKGPIkrU9TzcC5_-tv6_OH6J78",
         editable: true,
         // selectable: true,   POUR INSTANCIER UN EVENT SUR UNE PLAGE HORAIRE/JOURNALIERE, WIP
         aspectRatio: 1.5,
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         eventSources: [
             {
-                // googleCalendarId: 'couturierinc@gmail.com',
+                googleCalendarId: "couturierinc@gmail.com",
             },
 
             "refetch-events",
