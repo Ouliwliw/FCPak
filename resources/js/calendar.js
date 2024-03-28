@@ -155,20 +155,6 @@ function submitEventFormData() {
             }
         },
     });
-    $.ajax({
-        type: "PUT",
-        url: "google-events/create",
-        dataType: "json",
-        data: postData,
-        success: function (res) {
-            if (res.success) {
-                calendar.refetchEvents();
-                $("#eventModal").modal("hide");
-            } else {
-                alert("Something went wrong !");
-            }
-        },
-    });
 }
 function deleteEvent() {
     if (window.confirm("Êtes-vous sûr de vouloir supprimer cet événement ?")) {
@@ -177,20 +163,6 @@ function deleteEvent() {
         if (eventId) {
             url = `/events/${eventId}`;
         }
-        $.ajax({
-            type: "DELETE",
-            url: "google-events/delete",
-            dataType: "string",
-            data: eventId,
-            success: function (res) {
-                if (res.success) {
-                    calendar.refetchEvents();
-                    $("#eventModal").modal("hide");
-                } else {
-                    alert("Someting going wrong !");
-                }
-            },
-        });
         $.ajax({
             type: "DELETE",
             url: url,
