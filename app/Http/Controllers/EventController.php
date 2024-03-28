@@ -50,7 +50,7 @@ class EventController extends Controller
         $data['user_id'] = auth()->user()->id;
         $eventService = new EventService(auth()->user());
 
-        $googleEvent = GoogleEvent::create([
+        $googleEvent = GoogleCalendarEvent::create([
             'name' => $request->title,
             'startDateTime' => Carbon::parse($request->start),
             'endDateTime' => Carbon::parse($request->end),
